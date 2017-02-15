@@ -1,0 +1,21 @@
+server:
+  port: 8888
+spring:
+  profiles: production
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/pk2codes/datacollector_config
+
+---
+
+spring:
+  profiles: development
+  cloud:
+    config:
+      server:
+        git:
+          uri: ${user.home}/Dokumente/praxisphase/dev/vcs/datacollector_config
+server:
+  port: 8888
