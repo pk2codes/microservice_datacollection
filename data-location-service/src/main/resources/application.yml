@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: location-service
+  data:
+    cassandra:
+      port: 9042
+      contact-points: 127.0.0.1
+      keyspace-name: data_location_service
+server:
+  port: 8081
