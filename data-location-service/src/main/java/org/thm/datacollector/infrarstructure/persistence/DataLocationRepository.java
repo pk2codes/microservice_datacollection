@@ -11,9 +11,11 @@ import org.springframework.data.cassandra.core.CassandraOperations;
 import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.thm.datacollector.domain.model.DataLocation;
 
+import javax.management.Query;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -53,4 +55,8 @@ public class DataLocationRepository {
     }
 
 
+    public DataLocation getDataLocationById(UUID uuid) {
+        final Select s = QueryBuilder.select().from("datalocation").where((QueryBuilder.eq("id", uuid))).limit(1);
+        return ops.select(s, DataLocation.class).get(0);
+    }
 }

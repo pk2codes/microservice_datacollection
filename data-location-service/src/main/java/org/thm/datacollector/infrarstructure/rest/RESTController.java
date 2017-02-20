@@ -1,21 +1,21 @@
 package org.thm.datacollector.infrarstructure.rest;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.web.bind.annotation.*;
 import org.thm.datacollector.domain.model.DataLocation;
 import org.thm.datacollector.infrarstructure.model.ResponseMessage;
 import org.thm.datacollector.infrarstructure.persistence.DataLocationRepository;
 
 import java.net.UnknownHostException;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by patrick.welter on 2/16/17.
  * (c) Janitza Electronics
  */
 @RestController
+@EnableEurekaClient
 public class RESTController {
 
 
@@ -37,6 +37,19 @@ public class RESTController {
             }
         }
         return resultMsg;
+    }
+
+    @RequestMapping("/datalocation/load/{uuid}")
+    public DataLocation loadDataLocationById(@PathVariable("uuid")UUID uuid) {
+        final DataLocationRepository repo;
+        try {
+            repo = new DataLocationRepository();
+            return repo.getDataLocationById(uuid);
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @RequestMapping("/datalocation/load/all")

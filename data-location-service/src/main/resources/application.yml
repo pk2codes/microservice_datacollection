@@ -1,6 +1,6 @@
 spring:
   application:
-    name: location-service
+    name: data-location-service
   data:
     cassandra:
       port: 9042
