@@ -3,3 +3,8 @@ server:
 spring:
   application:
     name: data-load-service
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: requestdata

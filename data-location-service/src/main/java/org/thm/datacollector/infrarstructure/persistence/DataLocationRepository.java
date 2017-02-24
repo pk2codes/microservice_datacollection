@@ -11,7 +11,6 @@ import org.springframework.data.cassandra.core.CassandraOperations;
 import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.thm.datacollector.domain.model.DataLocation;
 
-import javax.management.Query;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
@@ -29,6 +28,7 @@ public class DataLocationRepository {
     private Session session;
     private CassandraOperations ops;
     private final InetAddress ADDRESS = InetAddress.getLocalHost();
+    private final String TABLE_NAME = "datalocation";
 
     private void setupSession() {
         final String KEYSPACE = "data_location_service";
@@ -44,7 +44,7 @@ public class DataLocationRepository {
     }
 
     public List<DataLocation> getAllDataLocations() {
-        final Select s = QueryBuilder.select().all().from("datalocation");
+        final Select s = QueryBuilder.select().all().from(TABLE_NAME);
         return ops.select(s, DataLocation.class);
     }
 
@@ -56,7 +56,7 @@ public class DataLocationRepository {
 
 
     public DataLocation getDataLocationById(UUID uuid) {
-        final Select s = QueryBuilder.select().from("datalocation").where((QueryBuilder.eq("id", uuid))).limit(1);
+        final Select s = QueryBuilder.select().from(TABLE_NAME).where((QueryBuilder.eq("id", uuid))).limit(1);
         return ops.select(s, DataLocation.class).get(0);
     }
 }

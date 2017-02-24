@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: data-store-service
+  profiles:
+    active: development
+  data:
+    cassandra:
+      port: 9042
+      contact-points: 127.0.0.1
+      keyspace-name: data_store_service
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: requestdata
+
+server:
+  port: 8085

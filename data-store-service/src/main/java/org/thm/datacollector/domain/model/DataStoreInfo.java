@@ -8,14 +8,15 @@ import org.springframework.data.cassandra.mapping.Table;
 import java.util.UUID;
 
 /**
- * Created by patrick.welter on 2/16/17.
+ * Created by patrick.welter on 2/23/17.
  * (c) Janitza Electronics
  */
+
 @Table
 @Data
 @AllArgsConstructor
-public class DataLocation {
+public class DataStoreInfo {
     @PrimaryKey
     private UUID id;
-    private String url;
+    private boolean isStored;
 }

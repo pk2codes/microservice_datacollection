@@ -1,6 +1,8 @@
 spring:
   application:
     name: data-location-service
+  profiles:
+    active: development
   data:
     cassandra:
       port: 9042

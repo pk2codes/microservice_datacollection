@@ -2,5 +2,5 @@
 spring:
   application:
     name: eureka
-
-
+  profiles:
+    active: development

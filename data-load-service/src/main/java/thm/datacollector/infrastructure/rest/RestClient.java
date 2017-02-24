@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import thm.datacollector.DataLoadServiceApplication;
 import thm.datacollector.infrastructure.rest.model.DataLocation;
 import thm.datacollector.infrastructure.rest.model.ExampleData;
 
@@ -24,7 +23,7 @@ import java.util.UUID;
  */
 @RestController
 @EnableFeignClients
-@EnableDiscoveryClient
+@EnableEurekaClient
 public class RestClient {
     @Bean
     public RestTemplate restTemplate() {
