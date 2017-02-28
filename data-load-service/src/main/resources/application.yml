@@ -8,3 +8,5 @@ spring:
       bindings:
         input:
           destination: requestdata
+        output:
+          destination: data

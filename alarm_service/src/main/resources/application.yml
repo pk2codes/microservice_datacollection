@@ -1,23 +1,22 @@
 spring:
   application:
-    name: data-store-service
+    name: alarm-service
   profiles:
     active: development
   data:
     cassandra:
       port: 9042
       contact-points: 127.0.0.1
-      keyspace-name: data_store_service
+      keyspace-name: alarm_service
   cloud:
     stream:
       bindings:
         output:
-
           destination: requestdata
         input:
-          group: datastoreservice
-          destination: locationstate
+          group: alarmservice
+          destination: data
 
 
 server:
-  port: 8085
+  port: 8099

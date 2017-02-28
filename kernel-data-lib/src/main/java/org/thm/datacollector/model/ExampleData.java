@@ -1,10 +1,9 @@
-package thm.datacollector.infrastructure.rest.model;
+package org.thm.datacollector.model;
 
 /**
- * Created by patrick.welter on 2/20/17.
+ * Created by patrick.welter on 2/28/17.
  * (c) Janitza Electronics
  */
-
 import lombok.Data;
 
 import java.util.Date;

@@ -21,22 +21,12 @@ import java.util.UUID;
  * Created by patrick.welter on 2/23/17.
  * (c) Janitza Electronics
  */
-public class DataStoreInfoRepository {
+public class DataStoreInfoRepository extends AbstractRepository<DataStoreInfo>{
     private final Logger LOG = LoggerFactory.getLogger(DataStoreInfoRepository.class);
 
-    private Cluster cluster;
-    private Session session;
-    private CassandraOperations ops;
-    private final InetAddress ADDRESS = InetAddress.getLocalHost();
-    private final String TABLE_NAME = "datastoreinfo";
 
-    private void setupSession() {
-        final String KEYSPACE = "data_store_service";
-        this.session = cluster.connect(KEYSPACE);
-    }
-
-    private void insertDataStoreInfo(final boolean isStored) {
-        ops.insert(new DataStoreInfo(UUIDs.timeBased(), isStored));
+    private void insertDataStoreInfo(final UUID uuid, final boolean isStored) {
+        ops.insert(new DataStoreInfo(uuid, isStored));
     }
 
     private void updateDataStoreInfo(final UUID uuid, final boolean isStored) {
@@ -44,11 +34,11 @@ public class DataStoreInfoRepository {
     }
 
     private void writeDataStoreInfo(final UUID uuid, final boolean isStored) {
-        final Optional<DataStoreInfo> optDataStoreInfo = findDataStoreInfoByUUID(uuid);
+        final Optional<DataStoreInfo> optDataStoreInfo = findByUUID(uuid);
         if(optDataStoreInfo.isPresent()) {
             updateDataStoreInfo(uuid, isStored);
         } else {
-            insertDataStoreInfo(isStored);
+            insertDataStoreInfo(uuid, isStored);
         }
     }
 
@@ -61,28 +51,9 @@ public class DataStoreInfoRepository {
         writeDataStoreInfo(uuid, false);
     }
 
-    private void setCluster() throws UnknownHostException {
-        this.cluster = Cluster.builder().addContactPoints(ADDRESS).build();
+    public DataStoreInfoRepository(){
+        super("data_store_service", "datastoreinfo", DataStoreInfo.class);
     }
-
-    public List<DataStoreInfo> loadAll() {
-        final Select s = QueryBuilder.select().all().from(TABLE_NAME);
-        return ops.select(s, DataStoreInfo.class);
-    }
-
-    public DataStoreInfoRepository() throws UnknownHostException{
-        setCluster();
-        setupSession();
-        ops = new CassandraTemplate(session);
-    }
-
-
-    private Optional<DataStoreInfo> findDataStoreInfoByUUID(UUID uuid) {
-        final Select s = QueryBuilder.select().from(TABLE_NAME).where((QueryBuilder.eq("id", uuid))).limit(1);
-        final List<DataStoreInfo> select = ops.select(s, DataStoreInfo.class);
-        return Optional.ofNullable(select.size() > 0?  select.get(0) : null );
-    }
-
 
 
 }

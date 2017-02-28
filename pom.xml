@@ -7,6 +7,16 @@
     <groupId>org.thm.datacollector</groupId>
     <artifactId>data-colllector</artifactId>
     <version>1.0-SNAPSHOT</version>
+<modules>
+    <module>alarm_service</module>
+    <module>data-location-service</module>
+    <module>data-store-service</module>
+    <module>config-server</module>
+    <module>data-load-service</module>
+    <module>discovery</module>
+    <module>mocked-data-resource</module>
+    <module>kernel-persistence-lib</module>
 
+</modules>
 
 </project>

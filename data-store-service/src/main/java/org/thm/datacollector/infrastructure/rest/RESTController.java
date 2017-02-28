@@ -28,35 +28,30 @@ import java.util.concurrent.TimeUnit;
 public class RESTController {
 
 
+    final DataStoreInfoRepository repo = new DataStoreInfoRepository();
 
-    @RequestMapping(method = RequestMethod.POST, path="/store/{uuid}")
+    @RequestMapping(method = RequestMethod.POST, path="/datastore/store/{uuid}")
     public ResponseMessage setStoring(@PathVariable("uuid") final UUID uuid) {
         ResponseMessage resultMsg = new ResponseMessage("error", "Something went wrong!");
         if(uuid != null ) {
-            try {
-                final DataStoreInfoRepository repo = new DataStoreInfoRepository();
                 repo.setStoring(uuid);
                 resultMsg.setMessage("storing item " + uuid.toString());
                 resultMsg.setStatus("ok");
-
-            } catch(UnknownHostException uhe) {
-                uhe.printStackTrace();
-            }
         }
         return resultMsg;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path="/load/all")
+    @RequestMapping(method = RequestMethod.GET, path="/datastore/load/all")
     public List<DataStoreInfo> setStoring() {
-        try {
-            final DataStoreInfoRepository repo = new DataStoreInfoRepository();
             return repo.loadAll();
-        } catch(UnknownHostException uhe) {
-            uhe.printStackTrace();
-        }
-        return null;
     }
-    @RequestMapping(method=RequestMethod.GET, path="/send/request")
+
+    @RequestMapping(method = RequestMethod.GET, path="/datastore/remove/{uuid}")
+    public void removeDataStoreInfoById(@PathVariable("uuid") final UUID uuid) {
+            repo.removeById(uuid);
+    }
+
+    @RequestMapping(method=RequestMethod.GET, path="/datastore/send/request")
     public void sendDataProviderRequest() {
 
     }

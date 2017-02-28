@@ -8,5 +8,10 @@ spring:
       port: 9042
       contact-points: 127.0.0.1
       keyspace-name: data_location_service
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: locationstate
 server:
   port: 8081

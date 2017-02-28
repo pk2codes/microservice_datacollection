@@ -5,7 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.thm.datacollector.model.OnlineRecording;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 @SpringBootApplication
@@ -40,5 +43,23 @@ public class MockedDataResourceApplication {
 		final ExampleData d = loadDataWithRandomValue();
 		d.setType(param);
 		return d;
+	}
+
+	@RequestMapping("/data/ivalue/activepower/{timebase}")
+	public OnlineRecording getRandomIvalue(@PathVariable("timebase") final long tb) {
+		return loadDataActivePowerValue(tb);
+	}
+
+	private OnlineRecording loadDataActivePowerValue(final long timeBaseMS) {
+		final String DUMMY_IVALUE = "POWER_ACTIVE_IVAL_IVAL_IVAL";
+		final Date end = new Date();
+		final Date start = new Date();
+		start.setTime(end.getTime() - timeBaseMS);
+		final OnlineRecording onlineRecording = new OnlineRecording();
+		onlineRecording.setStartTime(start);
+		onlineRecording.setEndTime(end);
+		onlineRecording.setType(DUMMY_IVALUE);
+		onlineRecording.setValue(createRandomDouble());
+		return onlineRecording;
 	}
 }
