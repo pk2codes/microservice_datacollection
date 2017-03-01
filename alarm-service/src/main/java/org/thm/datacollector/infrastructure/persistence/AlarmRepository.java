@@ -14,8 +14,8 @@ import java.util.UUID;
 public class AlarmRepository extends AbstractRepository<Alarm> {
     private final Logger LOG = LoggerFactory.getLogger(AlarmRepository.class);
 
-    public void createAlarm(final String ivalStr, final double threshold, final UUID alarmId) {
-        ops.insert(new Alarm(UUIDs.random(), ivalStr, threshold, alarmId));
+    public void createAlarm(final String ivalStr, final double threshold, final UUID locationId) {
+        ops.insert(new Alarm(UUIDs.random(), ivalStr, threshold, locationId));
     }
 
     public AlarmRepository() {

@@ -22,15 +22,15 @@ public class RESTController {
     final AlarmRepository repo = new AlarmRepository();
 
 
-    @RequestMapping(method = RequestMethod.POST, path="/alarm/store/{ivalue}/{alarmId}/excessive/{threshold}")
+    @RequestMapping( method = RequestMethod.GET, path="/alarm/store/{ivalue}/location/{locationId}/excessive/{threshold}")
     public ResponseMessage setStoring(@PathVariable("ivalue") final String ivalueStr,
-                                      @PathVariable("alarmId") final UUID alarmId,
+                                      @PathVariable("locationId") final UUID locationId,
                                       @PathVariable("threshold") final double threshold
                                       ) {
         ResponseMessage resultMsg = new ResponseMessage("error", "Something went wrong!");
         if(ivalueStr != null ) {
-            repo.createAlarm(ivalueStr, threshold, alarmId);
-            resultMsg.setMessage("storing alarm for" + ivalueStr + " with threshold: " + threshold);
+            repo.createAlarm(ivalueStr, threshold, locationId);
+            resultMsg.setMessage("storing alarm from "+locationId +" for" + ivalueStr + " with threshold: " + threshold);
             resultMsg.setStatus("ok");
         }
         return resultMsg;
