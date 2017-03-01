@@ -6,6 +6,7 @@
 
     <groupId>org.thm.datacollector</groupId>
     <artifactId>data-colllector</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 <modules>
     <module>alarm_service</module>
@@ -16,6 +17,7 @@
     <module>discovery</module>
     <module>mocked-data-resource</module>
     <module>kernel-persistence-lib</module>
+    <module>kernel-request-lib</module>
 
 </modules>
 

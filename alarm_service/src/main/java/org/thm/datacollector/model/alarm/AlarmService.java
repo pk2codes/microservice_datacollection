@@ -1,6 +1,7 @@
-package org.thm.datacollector.model;
+package org.thm.datacollector.model.alarm;
 
 import org.thm.datacollector.infrastructure.persistence.AlarmRepository;
+import org.thm.datacollector.model.OnlineRecording;
 
 import java.util.List;
 

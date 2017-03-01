@@ -1,4 +1,4 @@
-package org.thm.datacollector.model;
+package org.thm.datacollector.model.alarm;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,5 +20,6 @@ public class Alarm {
     private UUID id;
     private String ivalId;
     private double threshold;
+    private UUID locationId;
 
 }
