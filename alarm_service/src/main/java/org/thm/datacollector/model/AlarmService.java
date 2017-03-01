@@ -12,6 +12,12 @@ public class AlarmService {
     final private static AlarmRepository repo = new AlarmRepository();
 
     public static void watch(final OnlineRecording rec) {
-       // XXX todo
+        final List<Alarm> alarmList = repo.loadAll();
+        alarmList.stream().filter( (a) -> {
+            return a.getThreshold() < rec.getValue();
+        }).forEach( (a) -> {
+            System.out.println("Alarm for value : "+ a.getIvalId() +
+                    " value " + rec.getValue() + " > " + a.getThreshold());
+        });
     }
 }

@@ -22,7 +22,7 @@ public class MockedDataResourceApplication {
 
 	private double createRandomDouble(){
 		final Random r = new Random();
-		return r.nextDouble();
+		return r.nextDouble() * 100;
 	}
 
 	private ExampleData loadDataWithRandomValue() {

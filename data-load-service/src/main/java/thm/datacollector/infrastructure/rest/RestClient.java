@@ -24,7 +24,7 @@ public class RestClient {
 
     @FeignClient("data-location-service")
     public interface LocationResource {
-        @RequestMapping(method = RequestMethod.GET, value = "/data/ivalue/activepower/900000")
+        @RequestMapping(method = RequestMethod.GET,  value = "/datalocation/load/{uuid}")
         DataLocation dataLocation(@PathVariable("uuid") final UUID uuid);
     }
 

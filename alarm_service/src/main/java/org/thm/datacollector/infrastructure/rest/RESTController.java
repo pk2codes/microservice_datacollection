@@ -24,7 +24,7 @@ public class RESTController {
 
 
     @RequestMapping(method = RequestMethod.POST, path="/alarm/store/{ivalue}/excessive/{threshold}")
-    public ResponseMessage setStoring(@PathVariable("uuid") final String ivalueStr,
+    public ResponseMessage setStoring(@PathVariable("ivalue") final String ivalueStr,
                                       @PathVariable("threshold") final double threshold
                                       ) {
         ResponseMessage resultMsg = new ResponseMessage("error", "Something went wrong!");
