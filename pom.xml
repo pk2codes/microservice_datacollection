@@ -17,7 +17,8 @@
     <module>discovery</module>
     <module>mocked-data-resource</module>
     <module>kernel-persistence-lib</module>
-
+    <module>kernel-data-lib</module>
+    <module>zipkin-service</module>
 </modules>
 
 </project>

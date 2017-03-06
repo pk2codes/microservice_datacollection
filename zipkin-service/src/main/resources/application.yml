@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: zipknin-service
+  profiles:
+    active: development
+server:
+  port: 8787

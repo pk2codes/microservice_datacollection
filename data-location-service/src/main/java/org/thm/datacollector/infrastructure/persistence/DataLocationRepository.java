@@ -1,8 +1,7 @@
 package org.thm.datacollector.infrastructure.persistence;
 
 import com.datastax.driver.core.utils.UUIDs;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.thm.datacollector.domain.model.DataLocation;
 
 import java.net.UnknownHostException;
@@ -14,9 +13,10 @@ import java.util.UUID;
  * (c) Janitza Electronics
  */
 public class DataLocationRepository extends AbstractRepository<DataLocation>{
-    private final Logger LOG = LoggerFactory.getLogger(DataLocationRepository.class);
+    private final Logger log = Logger.getLogger(DataLocationRepository.class);
 
     public void insertDataLocation(final String url) {
+        log.info("insert: " + url);
         ops.insert(new DataLocation(UUIDs.timeBased(), url));
     }
 

@@ -1,5 +1,6 @@
 package org.thm.datacollector.infrastructure.rest;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +9,6 @@ import org.thm.datacollector.infrastructure.model.ResponseMessage;
 import org.thm.datacollector.infrastructure.persistence.DataLocationRepository;
 import org.thm.datacollector.infrastructure.stream.SenderService;
 
-import java.net.UnknownHostException;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +21,7 @@ import java.util.UUID;
 public class RESTController {
 
     final DataLocationRepository repo =new DataLocationRepository();
-
+    final Logger log = Logger.getLogger(DataLocationRepository.class);
 
     @Autowired
     SenderService senderService;
@@ -30,8 +30,10 @@ public class RESTController {
     public ResponseMessage saveDataLocation(@RequestParam(value="url", defaultValue="") final String url ) {
         ResponseMessage resultMsg = new ResponseMessage("error", "Something went wrong!");
         if(url == null || url.isEmpty()) {
+            log.warn("invalid parameter url: " + url);
             resultMsg.setMessage("No valid URL!");
         } else {
+
                 repo.insertDataLocation(url);
                 resultMsg.setStatus("ok");
                 resultMsg.setMessage("Url " + url + " saved!");
@@ -42,7 +44,8 @@ public class RESTController {
 
     @RequestMapping("/datalocation/load/{uuid}")
     public DataLocation loadDataLocationById(@PathVariable("uuid")UUID uuid) {
-            return repo.getDataLocationById(uuid);
+        log.info("load: " + uuid.toString());
+        return repo.getDataLocationById(uuid);
     }
 
     @RequestMapping("/datalocation/remove/{uuid}")
