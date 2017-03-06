@@ -1,15 +1,11 @@
 package org.thm.datacollector.domain;
 
-import com.netflix.discovery.converters.Auto;
-import org.apache.kafka.clients.producer.internals.Sender;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.thm.datacollector.infrastructure.stream.SenderService;
+import org.thm.datacollector.infrastructure.stream.DataProviderRequestService;
 import org.thm.datacollector.schedule.MessageSendJob;
 
-import javax.annotation.PostConstruct;
 import java.net.UnknownHostException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -24,11 +20,11 @@ public class Application implements InitializingBean{
 
 
     @Autowired
-    SenderService senderService;
+    DataProviderRequestService dataProviderRequestService;
     @Override
     public void afterPropertiesSet() throws Exception {
         try {
-            final MessageSendJob job = new MessageSendJob(senderService);
+            final MessageSendJob job = new MessageSendJob(dataProviderRequestService);
             final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
             scheduler.scheduleAtFixedRate(job, 0, 1000, TimeUnit.MILLISECONDS);
         } catch (UnknownHostException e) {

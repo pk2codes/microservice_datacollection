@@ -1,6 +1,5 @@
 package org.thm.datacollector.infrastructure.rest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,15 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.thm.datacollector.domain.model.DataStoreInfo;
 import org.thm.datacollector.infrastructure.model.ResponseMessage;
 import org.thm.datacollector.infrastructure.persistence.DataStoreInfoRepository;
-import org.thm.datacollector.infrastructure.stream.SenderService;
-import org.thm.datacollector.schedule.MessageSendJob;
 
-import java.net.UnknownHostException;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by patrick.welter on 2/23/17.

@@ -12,8 +12,9 @@ spring:
     stream:
       bindings:
         output:
-
           destination: requestdata
+        dataIn:
+          destination: data
         input:
           group: datastoreservice
           destination: locationstate

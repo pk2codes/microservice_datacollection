@@ -19,6 +19,7 @@
     <module>kernel-persistence-lib</module>
     <module>kernel-data-lib</module>
     <module>zipkin-service</module>
+    <module>data-persistence-service</module>
 </modules>
 
 </project>

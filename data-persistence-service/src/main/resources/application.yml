@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: data-persistence-service
+  profiles:
+    active: development
+  data:
+    cassandra:
+      port: 9042
+      contact-points: 127.0.0.1
+      keyspace-name: data_persistence_service
+server:
+  port: 8777

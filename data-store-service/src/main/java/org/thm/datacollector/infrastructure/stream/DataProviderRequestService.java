@@ -16,7 +16,7 @@ import java.util.UUID;
  */
 @Component
 @EnableBinding(Source.class)
-public class SenderService {
+public class DataProviderRequestService {
 
     @Autowired
     private MessageChannel output;
