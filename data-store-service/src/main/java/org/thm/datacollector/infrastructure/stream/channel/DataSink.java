@@ -8,7 +8,7 @@ import org.springframework.messaging.SubscribableChannel;
  * (c) Janitza Electronics
  */
 public interface DataSink {
-    String INPUT = "dataIn";
+    String INPUT = "dataIn"; 
 
     @Input("dataIn")
     SubscribableChannel dataIn();

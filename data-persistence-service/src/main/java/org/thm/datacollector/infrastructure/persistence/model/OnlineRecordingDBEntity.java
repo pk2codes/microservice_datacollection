@@ -1,8 +1,13 @@
 package org.thm.datacollector.infrastructure.persistence.model;
 
+import com.datastax.driver.core.utils.UUIDs;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.thm.datacollector.model.OnlineRecording;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 /**
@@ -10,14 +15,24 @@ import java.util.UUID;
  * (c) Janitza Electronics
  */
 @Data
-public class OnlineRecordingDBEntity extends OnlineRecording{
+@NoArgsConstructor
+public class OnlineRecordingDBEntity {
     private UUID id;
 
-    public OnlineRecordingDBEntity(final UUID uuid, final OnlineRecording or) {
-        setId(uuid);
+    public LocalDate startTime;
+    public LocalDate endTime;
+    public double value;
+    public String type;
+
+    private Date convertUtilDateToSqlDate(final java.util.Date d) {
+        return new Date(d.getTime());
+    }
+
+    public OnlineRecordingDBEntity(final OnlineRecording or) {
+        setId(UUIDs.random());
         setValue(or.getValue());
-        setEndTime(or.getEndTime());
-        setStartTime(or.getStartTime());
+        setStartTime(convertUtilDateToSqlDate(or.getStartTime()).toLocalDate());
+        setEndTime(convertUtilDateToSqlDate(or.getEndTime()).toLocalDate());
         setType(or.getType());
     }
 }

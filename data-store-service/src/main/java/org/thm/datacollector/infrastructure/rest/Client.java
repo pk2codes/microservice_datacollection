@@ -1,11 +1,10 @@
 package org.thm.datacollector.infrastructure.rest;
 
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.thm.datacollector.infrastructure.model.ResponseMessage;
 import org.thm.datacollector.model.OnlineRecording;
 
@@ -17,10 +16,11 @@ import java.util.UUID;
  */
 @EnableFeignClients
 @Component
+@EnableEurekaClient
 public class Client {
     @FeignClient("data-persistence-service")
     public interface SaveRecording {
-        @RequestMapping(method = RequestMethod.GET,  value = "/store/{recording}")
-        ResponseMessage dataLocation(@PathVariable("recording") final OnlineRecording recording);
+        @RequestMapping(method = RequestMethod.POST,  path = "/store/data")
+        String dataLocation(@RequestBody final OnlineRecording recording);
     }
 }

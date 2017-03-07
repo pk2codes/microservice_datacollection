@@ -18,11 +18,12 @@ import java.util.UUID;
 public class OnlineRecordingRepository extends AbstractRepository<OnlineRecordingDBEntity> {
 
     public OnlineRecordingRepository() {
-        super("data_persistence_service", "onlinerecording", OnlineRecordingDBEntity.class);
+        super("data_persistence_service", "onlinerecordingdbentity", OnlineRecordingDBEntity.class);
     }
 
     public void insertDataStoreInfo(final OnlineRecording rec) {
-        ops.insert(new OnlineRecordingDBEntity(UUIDs.timeBased(), rec));
+        final OnlineRecordingDBEntity onlineRecordingDBEntity = new OnlineRecordingDBEntity(rec);
+        ops.insert(onlineRecordingDBEntity);
     }
 
     public List<OnlineRecordingDBEntity> loadLastN(final int n) {
