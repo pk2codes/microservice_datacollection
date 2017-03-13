@@ -1,10 +1,10 @@
-package thm.datacollector.infrastructure.stream;
+package org.thm.datacollector.infrastructure.stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.integration.annotation.ServiceActivator;
-import thm.datacollector.model.DataLoader;
+import org.thm.datacollector.model.DataLoader;
 
 import java.util.UUID;
 import java.util.logging.Logger;

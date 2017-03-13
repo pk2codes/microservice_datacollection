@@ -1,4 +1,4 @@
-package thm.datacollector.infrastructure.rest.model;
+package org.thm.datacollector.infrastructure.rest.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

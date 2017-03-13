@@ -1,18 +1,16 @@
 spring:
   application:
     name: data-location-service
-  profiles:
-    active: development
   data:
     cassandra:
       port: 9042
       contact-points: 127.0.0.1
       keyspace-name: data_location_service
-  cloud:
+  sleuth:
     stream:
-      bindings:
-        output:
-          destination: locationstate
+      enabled: false
+  cloud:
+    config:
+      enabled: false
 server:
   port: 8081
-

@@ -25,6 +25,15 @@
 	</properties>
 
 	<dependencies>
+		<!-- If you're adding this dependency explicitly you have to
+			add it *BEFORE* the Release Train BOM-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-contract-dependencies</artifactId>
+			<version>1.0.4.RELEASE</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream</artifactId>
@@ -87,6 +96,18 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-sleuth-stream</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.jayway.restassured/spring-mock-mvc -->
+		<dependency>
+			<groupId>com.jayway.restassured</groupId>
+			<artifactId>spring-mock-mvc</artifactId>
+			<version>2.2.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.toomuchcoding.jsonassert</groupId>
+			<artifactId>jsonassert</artifactId>
+			<version>0.4.8</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -105,6 +126,12 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-contract-verifier</artifactId>
+				<scope>test</scope>
+			</dependency>
+
 		</dependencies>
 
 	</dependencyManagement>
@@ -114,6 +141,15 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
+				<version>1.0.4.RELEASE</version>
+				<extensions>true</extensions>
+				<configuration>
+					<baseClassForTests>org.thm.datacollector.contracts.ValidLocationContractBase</baseClassForTests>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

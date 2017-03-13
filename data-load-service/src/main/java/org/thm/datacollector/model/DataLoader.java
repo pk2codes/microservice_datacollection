@@ -1,13 +1,11 @@
-package thm.datacollector.model;
+package org.thm.datacollector.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import org.thm.datacollector.model.ExampleData;
-import org.thm.datacollector.model.OnlineRecording;
-import thm.datacollector.infrastructure.rest.RestClient;
-import thm.datacollector.infrastructure.stream.DataSender;
+import org.thm.datacollector.infrastructure.rest.RestClient;
+import org.thm.datacollector.infrastructure.stream.DataSender;
 
 import java.util.UUID;
 

@@ -1,4 +1,4 @@
-package thm.datacollector.infrastructure.stream;
+package org.thm.datacollector.infrastructure.stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;

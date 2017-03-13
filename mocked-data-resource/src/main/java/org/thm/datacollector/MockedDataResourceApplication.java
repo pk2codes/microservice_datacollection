@@ -1,4 +1,4 @@
-package thm.datacollector;
+package org.thm.datacollector;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.thm.datacollector.model.OnlineRecording;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 

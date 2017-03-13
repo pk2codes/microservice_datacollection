@@ -1,4 +1,4 @@
-package thm.datacollector;
+package org.thm.datacollector;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

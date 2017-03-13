@@ -1,4 +1,4 @@
-package thm.datacollector.infrastructure.rest;
+package org.thm.datacollector.infrastructure.rest;
 
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import thm.datacollector.infrastructure.rest.model.DataLocation;
+import org.thm.datacollector.infrastructure.rest.model.DataLocation;
 
 import java.util.UUID;
 
@@ -19,8 +19,6 @@ import java.util.UUID;
 @EnableFeignClients
 @EnableEurekaClient
 public class RestClient {
-
-
 
     @FeignClient("data-location-service")
     public interface LocationResource {
