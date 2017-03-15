@@ -1,10 +1,11 @@
 package org.thm.datacollector.infrastructure.stream;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.integration.annotation.ServiceActivator;
-import org.thm.datacollector.infrastructure.persistence.DataStoreInfoRepository;
+import org.thm.datacollector.infrastructure.persistence.DataStoreResourceRepository;
 
 import java.util.UUID;
 
@@ -16,8 +17,8 @@ import java.util.UUID;
 public class LocationStateReceiverService {
 
     private final Logger log  = Logger.getLogger(LocationStateReceiverService.class);
-    private DataStoreInfoRepository repo =new DataStoreInfoRepository();
-
+    @Autowired
+    private DataStoreResourceRepository repo;
 
 
     @ServiceActivator(inputChannel=Sink.INPUT)

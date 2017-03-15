@@ -15,6 +15,8 @@ spring:
           destination: requestdata
         dataIn:
           destination: data
+        dataIValue:
+          destination: ival
         input:
           group: datastoreservice
           destination: locationstate

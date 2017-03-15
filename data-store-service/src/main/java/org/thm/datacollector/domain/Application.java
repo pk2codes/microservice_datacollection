@@ -18,17 +18,10 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class Application implements InitializingBean{
 
-
-    @Autowired
-    DataProviderRequestService dataProviderRequestService;
     @Override
-    public void afterPropertiesSet() throws Exception {
-        try {
-            final MessageSendJob job = new MessageSendJob(dataProviderRequestService);
+    public void afterPropertiesSet()  {
+            final MessageSendJob job = new MessageSendJob();
             final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
             scheduler.scheduleAtFixedRate(job, 0, 1000, TimeUnit.MILLISECONDS);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
     }
 }

@@ -50,10 +50,18 @@ public abstract class AbstractRepository<E> {
         ops.deleteById(clazz, uuid);
     }
 
-    public Optional<E> findByUUID(UUID uuid) {
-        final Select s = QueryBuilder.select().from(tableName).where((QueryBuilder.eq("id", uuid))).limit(1);
+    public void removeBy(final Object key) {
+        ops.deleteById(clazz, key);
+    }
+
+    public Optional<E> findFirstBy(final String name, final Object value) {
+        final Select s = QueryBuilder.select().from(tableName).where((QueryBuilder.eq(name, value))).limit(1);
         final List<E> select = ops.select(s, clazz);
         return Optional.ofNullable(select.size() > 0?  select.get(0) : null );
+    }
+
+    public Optional<E> findByUUID(UUID uuid) {
+        return findFirstBy("id", uuid);
     }
 
     public void close() {

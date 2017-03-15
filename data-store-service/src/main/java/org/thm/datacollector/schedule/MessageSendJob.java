@@ -1,10 +1,9 @@
 package org.thm.datacollector.schedule;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.thm.datacollector.infrastructure.persistence.DataStoreInfoRepository;
+import org.thm.datacollector.infrastructure.persistence.DataStoreResourceRepository;
 import org.thm.datacollector.infrastructure.stream.DataProviderRequestService;
-
-import java.net.UnknownHostException;
 
 /**
  * Created by patrick.welter on 2/23/17.
@@ -13,13 +12,12 @@ import java.net.UnknownHostException;
 @Component
 public class MessageSendJob implements Runnable {
 
-    private final DataProviderRequestService dataProviderRequestService;
-    private final DataStoreInfoRepository repo;
+    @Autowired
+    private DataProviderRequestService dataProviderRequestService;
 
-    public MessageSendJob(final DataProviderRequestService dataProviderRequestService) throws UnknownHostException {
-        this.dataProviderRequestService = dataProviderRequestService;
-        this.repo = new DataStoreInfoRepository();
-    }
+    @Autowired
+    private DataStoreResourceRepository repo;
+
 
     @Override
     public void run() {
