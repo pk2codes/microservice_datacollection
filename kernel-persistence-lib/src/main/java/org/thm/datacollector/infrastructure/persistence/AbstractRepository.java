@@ -56,4 +56,7 @@ public abstract class AbstractRepository<E> {
         return Optional.ofNullable(select.size() > 0?  select.get(0) : null );
     }
 
+    public void close() {
+        this.cluster.close();
+    }
 }

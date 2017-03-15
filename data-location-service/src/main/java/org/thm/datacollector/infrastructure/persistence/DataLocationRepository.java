@@ -16,17 +16,26 @@ public class DataLocationRepository extends AbstractRepository<DataLocation>{
     private final Logger log = Logger.getLogger(DataLocationRepository.class);
 
     public void insertDataLocation(final String url) {
-        log.info("insert: " + url);
-        ops.insert(new DataLocation(UUIDs.timeBased(), url));
+        insertDataLocationWithId(UUIDs.timeBased(), url);
     }
 
     public DataLocationRepository()  {
        super("data_location_service", "datalocation", DataLocation.class);
     }
 
+    public DataLocationRepository(final String keySpaceName, final String tableName)  {
+        super(keySpaceName, tableName, DataLocation.class);
+    }
+
     public DataLocation getDataLocationById(final UUID uuid) {
         final Optional<DataLocation> location = findByUUID(uuid);
         return location.orElseGet(null);
+    }
+
+    public void insertDataLocationWithId(final UUID id, final String url) {
+        log.info("insert: " + url+ " id: "+ id.toString());
+        ops.insert(new DataLocation(id, url));
+
     }
 
 }

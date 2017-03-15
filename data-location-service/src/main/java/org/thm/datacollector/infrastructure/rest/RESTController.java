@@ -44,8 +44,11 @@ public class RESTController {
 
     @RequestMapping("/datalocation/load/{uuid}")
     public DataLocation loadDataLocationById(@PathVariable("uuid")UUID uuid) {
-        log.info("load: " + uuid.toString());
-        return repo.getDataLocationById(uuid);
+
+
+        final DataLocation dataLocationById = repo.getDataLocationById(uuid);
+        log.info("load: " + dataLocationById.toString());
+        return dataLocationById;
     }
 
     @RequestMapping("/datalocation/remove/{uuid}")
