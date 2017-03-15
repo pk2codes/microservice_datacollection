@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: data-gateway-service
+  profiles:
+    active: development
+  cloud:
+    stream:
+      bindings:
+        dataIval:
+          destination: requestdata
+        output:
+          group: gatewayservice
+          destination: ivalData
+
+
+server:
+  port: 8100

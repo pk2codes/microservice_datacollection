@@ -22,7 +22,7 @@ public class IValueDataReceiver {
     @Autowired
     private Client.SaveRecording saveRecording;
 
-    @ServiceActivator(inputChannel = DataResourceSink.INPUT)
+    @ServiceActivator(inputChannel = DataIValueSink.INPUT)
     public void dataReceived(final OnlineRecording rec) {
         log.info("received:" + rec.toString());
         //saveRecording.dataLocation(rec);

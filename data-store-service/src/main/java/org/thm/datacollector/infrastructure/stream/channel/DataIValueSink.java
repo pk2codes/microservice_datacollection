@@ -8,8 +8,8 @@ import org.springframework.messaging.SubscribableChannel;
  * (c) Janitza Electronics
  */
 public interface DataIValueSink {
-    String INPUT = "dataIValue";
+    String INPUT = "dataIValueIn";
 
-    @Input("dataIValue")
+    @Input("dataIValueIn")
     SubscribableChannel dataIn();
 }

@@ -9,4 +9,4 @@ spring:
         input:
           destination: requestdata
         output:
-          destination: data
+          destination: recourceData

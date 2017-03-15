@@ -20,6 +20,7 @@
     <module>kernel-data-lib</module>
     <module>zipkin-service</module>
     <module>data-persistence-service</module>
+    <module>data-gateway-service</module>
 </modules>
 
 </project>
