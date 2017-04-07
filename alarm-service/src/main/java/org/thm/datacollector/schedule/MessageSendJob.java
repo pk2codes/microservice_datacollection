@@ -1,5 +1,6 @@
 package org.thm.datacollector.schedule;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.thm.datacollector.infrastructure.persistence.AlarmRepository;
 import org.thm.datacollector.infrastructure.stream.SenderService;
@@ -12,12 +13,12 @@ import java.net.UnknownHostException;
  */
 @Component
 public class MessageSendJob implements Runnable {
+    @Autowired
+    private SenderService senderService;
 
-    private final SenderService senderService;
     private final AlarmRepository repo;
 
-    public MessageSendJob(final SenderService senderService) throws UnknownHostException {
-        this.senderService = senderService;
+    public MessageSendJob() throws UnknownHostException {
         this.repo = new AlarmRepository();
     }
 

@@ -13,9 +13,6 @@ spring:
       bindings:
         output:
           destination: requestdata
-        input:
-          group: alarmservice
-          destination: recourceData
 
 
 server:

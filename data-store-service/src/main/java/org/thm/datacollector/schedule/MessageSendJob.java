@@ -21,8 +21,10 @@ public class MessageSendJob implements Runnable {
 
     @Override
     public void run() {
+        /*
         repo.loadAll().forEach((info) -> {
             dataProviderRequestService.requestDataProvider(info.getId());
         });
+        */
     }
 }

@@ -11,8 +11,9 @@ spring:
   cloud:
     stream:
       bindings:
-        output:
-          destination: requestdata
+        gridvisIn:
+          destination: gridvis_online_values
+          mode: raw
         dataIn:
           destination: recourceData
         dataIValueIn:
@@ -20,7 +21,5 @@ spring:
         input:
           group: datastoreservice
           destination: locationstate
-
-
 server:
   port: 8085
