@@ -1,6 +1,4 @@
-# Migrating the Monolithic Software
-Application GridVis to a Microservice
-Based Architecture
+# Migrating the Monolithic Software Application GridVis to a Microservice Based Architecture
 
 
 **Digitalization and Industry 4.0 drive the usage of cloud-based cost-efficient software.
